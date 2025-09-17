@@ -1,0 +1,30 @@
+# Global variables used by setup-environment.yml
+common_packages:
+- git
+- curl
+- unzip
+- wget
+- build-essential
+- software-properties-common
+- ca-certificates
+- apt-transport-https
+
+
+# Java settings
+java_install: true
+java_install_method: "apt" # options: 'apt' or 'manual'
+java_package: "openjdk-17-jdk" # on some systems 'openjdk-17-jdk-headless' may be preferred
+java_home: "/usr/lib/jvm/java-17-openjdk-amd64" # verify on target OS
+
+
+# Maven settings
+maven_install_method: "binary" # options: 'apt' or 'binary'
+maven_version: "3.9.11"
+maven_install_dir: "/opt/maven"
+maven_download_url: "https://downloads.apache.org/maven/maven-3/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz"
+
+
+# Java repo to clone
+java_repo_url: "https://github.com/Suresh3028/ansible-setup-env.git"
+java_dest: "/opt/java-boilerplate"
+run_maven_build: true # set to false to skip mvn clean package

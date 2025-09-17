@@ -1,0 +1,35 @@
+- name: Setup Java Environment
+  hosts: boilerplate_servers
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install common tools
+      apt:
+        name:
+          - git
+          - curl
+          - unzip
+          - wget
+          - build-essential
+          - software-properties-common
+        state: present
+
+    - name: Install OpenJDK 17
+      apt:
+        name: openjdk-17-jdk
+        state: present
+
+    - name: Install Maven
+      apt:
+        name: maven
+        state: present
+
+    - name: Clone Java boilerplate repo
+      git:
+        repo: "git@github.com:Suresh3028/ansible-setup-env.git"
+        dest: /opt/java-boilerplate
+        update: yes
